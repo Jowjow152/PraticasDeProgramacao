@@ -6,12 +6,13 @@
 </head>
 <body>
 <h3>Cadastro de Paises</h3>
-<form action="PaisController.do" method="get">
+<form action="PaisController.do" method="post">
 
 Nome: <input type="text" name="nome"><br>
 Populacao: <input type="number" name="populacao"><br>
 Area: <input type="number" name="area"><br>
-<input type="submit">
+<input type="submit" name="acao" value="incluir">
+<input type="submit" name="acao" value="listar">
 </form>
 </body>
 </html>

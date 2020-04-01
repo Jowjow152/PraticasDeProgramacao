@@ -1,4 +1,4 @@
-
+package aula04;
 //
 public class Pais {
 	private int id;
@@ -87,10 +87,15 @@ public class Pais {
 		PaisTO to = new PaisTO(id, nome, populacao, area);
 
 		PaisService.create(to);
-	}	
+	}
 	
 	public void read() {
-		PaisTO to = PaisService.read(id);
+		PaisTO to = null;
+		
+		if(id != 0)
+			to = PaisService.read(id);
+		else
+			to = PaisService.read(nome);
 		
 		id = to.getId();
 		nome = to.getNome();
