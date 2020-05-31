@@ -89,16 +89,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="pais" items="${lista }">
+							<c:forEach var="pais" items="${lista}">
 								<tr>
-									<td>${pais.id }</td>
-									<td>${pais.nome }</td>
+									<td>${pais.id}</td>
+									<td>${pais.nome}</td>
 									<td>${pais.populacao}</td>
 									<td>${pais.area}</td>
 									<td class="actions"><a class="btn btn-success btn-xs"
-										href="ManterPais.do?acao=Visualizar&id=${pais.id}">Visualizar</a>
+										href="ManterPais.do?acao=Visualizar&id=${pais.id}&nome=${pais.nome}&populacao=${pais.populacao}&area=${pais.area}">Visualizar</a>
 										<a class="btn btn-warning btn-xs"
-										href="ManterPais.do?acao=Editar&id=${pais.id}">Editar</a>
+										href="ManterPais.do?acao=Editar&id=${pais.id}&nome=${pais.nome}&populacao=${pais.populacao}&area=${pais.area}">Editar</a>
 										<button id="btn${pais.id}%>" type="button"
 											class="btn btn-danger btn-xs" data-toggle="modal"
 											data-target="#delete-modal" data-cliente="${pais.id}">Excluir</button>

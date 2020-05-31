@@ -39,4 +39,20 @@ public class LoginDAO {
 		
 		return u;
 	}
+	
+	public static void criar (Usuario user){
+		String sqlInsert = "INSERT INTO usuario(Nome, Senha, Login) VALUES (?, ?, ?)";
+		
+		try (Connection conn = ConnectionFactory.obtemConexao(); PreparedStatement stm = conn.prepareStatement(sqlInsert);){
+			stm.setString(1, user.getNome());						
+			stm.setString(2, user.getSenha());
+			stm.setString(3, user.getLogin());
+			stm.execute();
+			
+			conn.close();
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+	}
 }

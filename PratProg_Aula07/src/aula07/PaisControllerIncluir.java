@@ -30,7 +30,7 @@ public class PaisControllerIncluir extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	@SuppressWarnings("unused")
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -39,16 +39,16 @@ public class PaisControllerIncluir extends HttpServlet {
 		String pNome = request.getParameter("nome");
 		String pPopulacao = request.getParameter("populacao");
 		String pArea = request.getParameter("area");
-		int id = -1;
-		try {
-			id = Integer.parseInt(pId);
-		} catch (NumberFormatException e) {
-
-		}
 
 		Pais pais = new Pais();
-		pais.setId(id);
-		pais = PaisService.read(pais.getId());
+		pais.setId(Integer.parseInt(pId));
+		pais.setNome(pNome);
+		try {
+		pais.setPopulacao(Long.parseLong(pPopulacao));
+		pais.setArea(Double.parseDouble(pArea));
+		}catch(NumberFormatException e){
+			
+		}
 
 			
 		RequestDispatcher view = null;
@@ -59,13 +59,13 @@ public class PaisControllerIncluir extends HttpServlet {
 			ArrayList<Pais> lista = new ArrayList<>();
 			lista.add(pais);
 			session.setAttribute("lista", lista);
-			view = request.getRequestDispatcher("index.jsp");
+			view = request.getRequestDispatcher("Lista.jsp");
 		} else if (pAcao.equals("Excluir")) {
 			PaisService.delete(pais.getId());
 			ArrayList<Pais> lista = (ArrayList<Pais>)session.getAttribute("lista");
 			lista.remove(busca(pais, lista));
 			session.setAttribute("lista", lista);
-			view = request.getRequestDispatcher("index.jsp");		
+			view = request.getRequestDispatcher("Lista.jsp");		
 		} else if (pAcao.equals("Alterar")) {
 			PaisService.update(pais.getId(), pais);
 			ArrayList<Pais> lista = (ArrayList<Pais>)session.getAttribute("lista");
